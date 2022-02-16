@@ -1,7 +1,14 @@
-<div *ngFor="let transferencia of transferencias">
-     <!-- | date: ""short formata data para um padrão curto 16/02/2022 07:14"-->
-    <p>Data: {{ transferencia?.data | date: "short"}}</p>
-    <!-- | currency: ""formata valor para moeda corrente 20 => R$ 20,00"-->
-    <p>Valor: {{ transferencia?.valor | currency}}</p>
-    <p>Destino: {{ transferencia?.destino }}</p>
-</div>
+<table>
+  <thead>
+    <th>Data</th>
+    <th>Valor</th>
+    <th>Destino</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let transferencia of transferencias">
+      <td>{{transferencia.data | date: "short"}}</td>
+      <td>{{transferencia.valor | currency}}</td>
+      <td>{{transferencia.destino}}</td>
+    </tr>
+  </tbody>
+</table>
