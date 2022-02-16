@@ -3,6 +3,7 @@
     (valoresComErro)="exibirModalErro($event)"
 ></app-nova-transferencia>
 
-<p>MensagemeErro: {{ mensagemErro }}</p>
+
+<p *ngIf="!!mensagemErro">MensagemeErro: {{ mensagemErro }}</p>
 
 <app-extrato [transferencias]="transferencias"></app-extrato>

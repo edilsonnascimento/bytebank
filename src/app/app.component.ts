@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'bytebank';
   transferencias: any[] = [];
-  mensagemErro: string;
+  mensagemErro: string = "";
 
   transferir($event){
     //captura as propriedades de $event e adiciona a propriedade data

@@ -12,26 +12,24 @@ export class NovaTransferenciaComponent {
 
   valor: number;
   destino: number;
-  mensagemErro: string = '';
+  mensagemErro: string;
 
   transferir() {
-    console.log('Solicitada a transferencia');
-
+    this.mensagemErro = "";
     if (this.isValido()) {
       const valorEmitir = { valor: this.valor, destino: this.destino };
       this.aoTransferir.emit(valorEmitir);
       this.limparCampos();
     }
     this.limparCampos();
-
   }
 
   isValido() {
     const valido = this.valor > 0;
-    this.mensagemErro = 'Informe um valor válido';
     if(!valido){
-      this.valoresComErro.emit(this.mensagemErro);
+      this.mensagemErro = 'Informe um valor válido';
     }
+    this.valoresComErro.emit(this.mensagemErro);
     return valido;
   }
 
