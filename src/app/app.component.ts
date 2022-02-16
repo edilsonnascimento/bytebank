@@ -7,12 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'bytebank';
-  destino: number;
-  valor: number;
+  transferencia: any;
+  mensagemErro: string;
 
   transferir($event){
     console.log($event);
-    this.destino = $event.destino;
-    this.valor = $event.valor;
+    this.transferencia = $event;
+  }
+
+  exibirModalErro($event){
+      this.mensagemErro = $event;
   }
 }
