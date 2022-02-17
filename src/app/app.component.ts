@@ -17,9 +17,7 @@ export class AppComponent {
   }
 
   transferir($event){
-    //captura as propriedades de $event e adiciona a propriedade data
-    const transferencia = {...$event, data: new Date()};
-    this.transferencias.push(transferencia);
+    this.service.adicionar($event);
   }
 
   exibirModalErro($event){
