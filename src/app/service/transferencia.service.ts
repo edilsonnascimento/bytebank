@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 //Instancia gerenciada pelo Angular
 @Injectable({
@@ -7,7 +8,7 @@ import { Injectable } from '@angular/core';
 export class TransferenciaService {
   private transferencias: any[];
 
-  constructor() {
+  constructor(private httpClient: HttpClient) {
     this.transferencias = [];
   }
 
