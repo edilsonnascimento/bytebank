@@ -4,12 +4,11 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
-//Instancia gerenciada pelo Angular
 @Injectable({
   providedIn: 'root',
 })
 export class TransferenciaService {
-  private transferencias: any[];
+  private transferencias: Transferencia[];
   private URL = 'http://localhost:3000/transferencias';
 
   constructor(private httpClient: HttpClient) {
@@ -24,12 +23,12 @@ export class TransferenciaService {
     return this.httpClient.get<Transferencia[]>(this.URL);
   }
 
-  adicionar(transferencia: any) {
+  adicionar(transferencia: Transferencia): Observable<Transferencia> {
     this.adicionarData(transferencia);
-    this.transferencias.push(transferencia);
+    return this.httpClient.post<Transferencia>(this.URL, transferencia);
   }
 
-  private adicionarData(transferencia: any) {
+  private adicionarData(transferencia: Transferencia) {
     transferencia.data = new Date();
   }
 }

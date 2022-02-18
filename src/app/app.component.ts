@@ -8,17 +8,10 @@ import { TransferenciaService } from './service/transferencia.service';
 })
 export class AppComponent {
   title = 'bytebank';
-  transferencias: any[] = [];
   mensagemErro: string = "";
 
   //injetando service
-  constructor(private service: TransferenciaService){
-
-  }
-
-  transferir($event){
-    this.service.adicionar($event);
-  }
+  constructor(private service: TransferenciaService){}
 
   exibirModalErro($event){
       this.mensagemErro = $event;

@@ -1,5 +1,7 @@
+import { Transferencia } from './../models/transferencia.model';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, Output, EventEmitter } from '@angular/core';
+import { TransferenciaService } from '../service/transferencia.service';
 
 @Component({
   selector: 'app-nova-transferencia',
@@ -14,11 +16,23 @@ export class NovaTransferenciaComponent {
   destino: number;
   mensagemErro: string;
 
+  constructor(private service: TransferenciaService) {}
+
   transferir() {
-    this.mensagemErro = "";
+    this.mensagemErro = '';
     if (this.isValido()) {
-      const valorEmitir = { valor: this.valor, destino: this.destino };
-      this.aoTransferir.emit(valorEmitir);
+      const valorTransferir: Transferencia = {
+        valor: this.valor,
+        destino: this.destino,
+      };
+
+      this.service.adicionar(valorTransferir).subscribe((resultado) => {
+        console.log(resultado);
+        this.limparCampos();
+      }, (error) => {
+        console.log(error);
+      });
+
       this.limparCampos();
     }
     this.limparCampos();
@@ -26,7 +40,7 @@ export class NovaTransferenciaComponent {
 
   isValido() {
     const valido = this.valor > 0;
-    if(!valido){
+    if (!valido) {
       this.mensagemErro = 'Informe um valor válido';
     }
     this.valoresComErro.emit(this.mensagemErro);
