@@ -11,7 +11,6 @@ export class NovaTransferenciaComponent {
 
   valor: number;
   destino: number;
-  mensagemErro: string;
 
   constructor(private service: TransferenciaService) {}
 
